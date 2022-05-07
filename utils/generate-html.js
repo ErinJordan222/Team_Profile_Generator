@@ -62,7 +62,7 @@ function addEngineer(engineer) {
     return `<div class="card info-card">
     <div class="card-header">
         <h2 class="card-title">${engineer.getRole()}</h2>
-        <h4 class="card-title">${engineer.getName()}</h4>
+        <h4 class="card-text">${engineer.getName()}</h4>
     </div>
     <div class="card-body">
     <ul class="list-group">
