@@ -59,7 +59,8 @@ ${engineers
 
 
 function addEngineer(engineer) {
-    return `<div class="card info-card">
+    return `<div class="info-area col-12 d-flex justify-content-center">
+    <div class="card info-card">
     <div class="card-header">
         <h2 class="card-title">${engineer.getRole()}</h2>
         <h4 class="card-text">${engineer.getName()}</h4>
@@ -71,11 +72,13 @@ function addEngineer(engineer) {
         <li class="list-group-item">Github: <a href="https://github.com">${engineer.getGithub()}</a></li>
     </ul>
 </div>
+</div>
 </div>`
 }
 
 function addIntern(intern) {
-    return `<div class="card info-card">
+    return `<div class="info-area col-12 d-flex justify-content-center">
+    <div class="card info-card">
     <div class="card-header">
     <h2 class="card-title">${intern.getRole()}</h2>
     <h4 class="card-text">${intern.getName()}</h4>
@@ -86,6 +89,7 @@ function addIntern(intern) {
     <li class="list-group-item">Email: <a href="mail">${intern.getEmail()}</a></li>
     <li class="list-group-item">School: ${intern.getSchool()}</li>
 </ul>
+</div>
 </div>
 </div>`
 }
