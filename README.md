@@ -6,7 +6,7 @@
 ### Erin Jordan's Team Profile Generator Week 10 Project for University of Denver Coding Bootcamp. 
 #### The purpose of this project is to build a Node.js command line application in which collects information about employees on a software engineer team, then it will generate to a HTML page to display each team members info. 
 
-* https://github.com/ErinJordan222/Employee_Manage_System.git
+* https://github.com/ErinJordan222/Team_Profile_Generator.git
 
 ## Table of Contents
 * [Description](#description)
