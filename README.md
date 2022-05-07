@@ -34,10 +34,6 @@ The usage of this repo is to demonstrate how to run a employee management system
 
 ## Screenshots
  
- 
-
-
-https://user-images.githubusercontent.com/92272866/167270791-be9c5833-a3af-4f61-adbd-0c287939e987.mp4
 
 https://user-images.githubusercontent.com/92272866/167270858-6b5e1ab4-e16e-413a-95b5-cc74b1d4db50.mp4
 
