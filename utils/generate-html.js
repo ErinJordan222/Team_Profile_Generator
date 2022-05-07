@@ -37,21 +37,26 @@ const generateInfo = ({manager, interns, engineers}) => {
                     </ul>
                 </div>
             </div>
-            ${interns.map(quals => {
-                return addIntern(quals)
-            }).join('')}
-            ${engineers.map(quals => {
-                return addEngineer(quals)
-            }).join('')}
+       
                 </div>
 </div>
 
+${engineers
+.map(quals => {
+    return addEngineer(quals)
+    }).join('')}
+    ${interns
+        .map(quals => {
+            return addIntern(quals)
+            }).join('')}
 
     </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </html>`
 };
+
+
 
 function addEngineer(engineer) {
     return `<div class="card info-card">
@@ -63,14 +68,14 @@ function addEngineer(engineer) {
     <ul class="list-group">
         <li class="list-group-item">ID:${engineer.getRole()}</li>
         <li class="list-group-item">Email: <a href="mail">${engineer.getEmail()}</a></li>
-        <li class="list-group-item">Github: <a href="https://github.com">${engineer.github()}</a></li>
+        <li class="list-group-item">Github: <a href="https://github.com">${engineer.getGithub()}</a></li>
     </ul>
 </div>
 </div>`
 }
 
 function addIntern(intern) {
-    return `    <div class="card info-card">
+    return `<div class="card info-card">
     <div class="card-header">
     <h2 class="card-title">${intern.getRole()}</h2>
     <h4 class="card-text">${intern.getName()}</h4>

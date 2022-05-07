@@ -104,7 +104,7 @@ function internQuestions() {
 
     .then(internAnswers => {
         const { name, id, email, school } = internAnswers;
-        infoObj.interns = new Intern(name, id, email, school); 
+        infoObj.interns.push(new Intern(name, id, email, school)); 
         employeeChoice();
     })
 };
