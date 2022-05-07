@@ -33,9 +33,10 @@ The usage of this repo is to demonstrate how to run a employee management system
 ### Any questions feel free to contact me at <a href="https://erinjordan2790@gmail.com">ErinJordan2790@gmail.com</a> or <a href="https://github.com/ErinJordan222">ErinJordan222</a
 
 ## Screenshots
- 
-
-https://user-images.githubusercontent.com/92272866/167270858-6b5e1ab4-e16e-413a-95b5-cc74b1d4db50.mp4
 
 
  
+
+
+https://user-images.githubusercontent.com/92272866/167270883-2c58d905-042f-48d6-997e-89ec6146a22f.mp4
+
