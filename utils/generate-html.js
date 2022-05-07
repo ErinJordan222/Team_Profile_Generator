@@ -1,149 +1,90 @@
-const generateInfo = require('./utils/generate-template');
-const Employee = require('./lib/Employee');
-const Manager = require('./lib/Manager');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
-const inquirer = require('inquirer');
-const fs = require('fs');
+const generateInfo = ({manager, interns, engineers}) => {
+    return `<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="style.css">
+    </head>
+    
+    <body>
+        <main>
+                <div class="jumbotron-fluid">
+                    <div class="row">
+                    <div class="col-12 jumbotron mb-3 main-heading">
+                        <h1 class="text-center">Employee Management System</h1>
+                        <h2 class="text-center">My Team</h2>
+                    </div>
+                </div>
+            </div>
+            
+        <div class="container">
+            <div class="row">
+                <div class="info-area col-12 d-flex justify-content-center">
+                    <div class="card info-card">
+                        <div class="card-header">
+                        <h2 class="card-title">${manager.getRole()}</h2>
+                        <h4 class="card-text">${manager.getName()}</h4>
+                    </div>
+                    <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">ID: ${manager.getId()}</li>
+                        <li class="list-group-item">Email:<a href="mailto: ${manager.getEmail()}</a></li>
+                        <li class="list-group-item">Office #: ${manager.getOffice()}</li>
+                    </ul>
+                </div>
+            </div>
+            ${interns.map(quals => {
+                return addIntern(quals)
+            }).join('')}
+            ${engineers.map(quals => {
+                return addEngineer(quals)
+            }).join('')}
+                </div>
+</div>
 
-let infoObj = {
-    manager: '',
-    engineers: [],
-    interns: [],
-}
 
-function managerQuestions() {
-    console.log('Input your team info!');
-    inquirer
-    .prompt ([
-        {
-            type: 'input',
-            message: "Manager's Name?",
-            name: 'name'
-        },
-        {
-            type: 'input',
-            message: "Manager's id #?",
-            name: 'id'
-        },
-        {
-            type: 'input',
-            message: "Manager's email?",
-            name: 'email'
-        },
-        {
-            type: 'input',
-            message: "Manager's office #?",
-            name: 'office'
-        }
-    ])
-
-    .then(managerAnswers => {
-        const { name, id, email, office } = managerAnswers;
-        infoObj.manager = new Manager(name, id, email, office); 
-        employeeChoice();
-    })
+    </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</html>`
 };
 
-function engineerQuestions() {
-    inquirer
-    .prompt ([
-        {
-            type: 'input',
-            message: "Engineer's Name?",
-            name: 'name'
-        },
-        {
-            type: 'input',
-            message: "Engineer's id #?",
-            name: 'id'
-        },
-        {
-            type: 'input',
-            message: "Manager's email?",
-            name: 'email'
-        },
-        {
-            type: 'input',
-            message: "Engineer's github username?",
-            name: 'github'
-        },
-    ])
-
-    .then(engineerAnswers => {
-        const { name, id, email, github } = engineerAnswers;
-        infoObj.engineers.push(new Engineer(name, id, email, github)); 
-        employeeChoice();
-    })
-};
-
-function internQuestions() {
-    inquirer
-    .prompt ([
-        {
-            type: 'input',
-            message: "Intern's Name?",
-            name: 'name'
-        },
-        {
-            type: 'input',
-            message: "Intern's id #?",
-            name: 'id'
-        },
-        {
-            type: 'input',
-            message: "Intern's email?",
-            name: 'email'
-        },
-        {
-            type: 'input',
-            message: "Intern's schooling?",
-            name: 'school'
-        }
-    ])
-
-    .then(internAnswers => {
-        const { name, id, email, school } = internAnswers;
-        infoObj.interns = new Intern(name, id, email, school); 
-        employeeChoice();
-    })
-};
-
-function employeeChoice() {
-    inquirer
-    .prompt ([
-        {
-            type: 'list',
-            name: 'choice',
-            message: 'Add another team member info?',
-            choices: ['Manager', 'Engineer', 'Intern', 'Done!']
-        },
-    ])
-
-    .then((choices) => {
-        const { choice } = choices;
-        if (choice === 'Manager') {
-            managerQuestions();
-        } else if (choice === 'Engineer') {
-            engineerQuestions();
-        } else if (choice === 'Intern') {
-            internQuestions();
-        } else {
-            writeToFile();
-        }
-    })
+function addEngineer(engineer) {
+    return `<div class="card info-card">
+    <div class="card-header">
+        <h2 class="card-title">${engineer.getRole()}</h2>
+        <h4 class="card-title">${engineer.getName()}</h4>
+    </div>
+    <div class="card-body">
+    <ul class="list-group">
+        <li class="list-group-item">ID:${engineer.getRole()}</li>
+        <li class="list-group-item">Email: <a href="mail">${engineer.getEmail()}</a></li>
+        <li class="list-group-item">Github: <a href="https://github.com">${engineer.github()}</a></li>
+    </ul>
+</div>
+</div>`
 }
 
-function writeToFile() {
-    fs.writeFile('./dist/index.html', generateInfo(infoObj), function(error) {
-        if(error) {
-            throw error;
-        } console.log('Employee Team Info is complete!');
-    })
+function addIntern(intern) {
+    return `    <div class="card info-card">
+    <div class="card-header">
+    <h2 class="card-title">${intern.getRole()}</h2>
+    <h4 class="card-text">${intern.getName()}</h4>
+</div>
+<div class="card-body">
+<ul class="list-group">
+    <li class="list-group-item">ID: ${intern.getId()} </li>
+    <li class="list-group-item">Email: <a href="mail">${intern.getEmail()}</a></li>
+    <li class="list-group-item">School: ${intern.getSchool()}</li>
+</ul>
+</div>
+</div>`
 }
 
-function init() {
-    managerQuestions()
- };
 
- init();
+module.exports = generateInfo;
+
